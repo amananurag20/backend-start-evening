@@ -2,12 +2,17 @@ const express=require("express");
 const app=express();
 
 
+app.use(express.json());  //jsonData->object
+app.use(express.urlencoded({extended:true}))
+
+
 app.post("/",(req,res)=>{
     res.send("post request home")
 })
 
-app.get("/user",(req,res)=>{
-    console.log(req.query)
+app.post("/user",(req,res)=>{
+    // console.log(req.query)
+    console.log(req.body)
    res.send("Hello World");
 });
 
