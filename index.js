@@ -6,32 +6,25 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 // app.use(express.text());// text->String
 
+const m1=(req,res,next)=>{
+   console.log("sensationnnnnn");
+   next() ; 
+}
+
+app.use("/user",m1);
 
 app.post("/",(req,res)=>{
     res.send("post request home")
 })
 
-const m1=(req,res,next)=>{
-    req.city="mohaliiiiiiii";
-    console.log("middleware1");
-    next();
-}
-
-const m2=(req,res,next)=>{
-    console.log("middleware2");
-    res.send("hii middleware 2");
+app.post("/user",(req,res)=>{ 
     
-    next();
-}
-
-
-
-app.post("/user",m1,m2,(req,res)=>{
- 
-    console.log(req.body);
-    console.log(req)
-//    res.send("Hello World");
+   res.send("Hello World");
 });
+
+app.post("/user/apple/orange",(req,res)=>{
+    res.send("Hello Apple");
+})
 
 app.get("/user/:name",(req,res)=>{     
     console.log(req.params)
